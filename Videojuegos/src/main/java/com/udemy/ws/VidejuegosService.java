@@ -21,6 +21,14 @@ public class VidejuegosService {
 		
 		destacados.add(juego);
 		
+		juego = new Videojuego();
+		
+		juego.setDescripcion("Lenguaje Lógico");
+		juego.setNombre("Prolog");
+		juego.setImagenUrl("https://programaenlinea.net/wp-content/uploads/2018/08/prolog-1024x585.jpg");
+		
+		destacados.add(juego);
+				
 		return destacados;
 	}
 }
