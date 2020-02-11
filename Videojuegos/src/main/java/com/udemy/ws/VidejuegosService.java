@@ -1,34 +1,35 @@
 package com.udemy.ws;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.udemy.domain.Videojuego;
+import com.udemy.repository.VideojuegoRepository;
 
 @Service
 public class VidejuegosService {
+	
+	private final VideojuegoRepository videojuegoRepository;
+	
+	
+
+	public VidejuegosService(VideojuegoRepository videojuegoRepository) {
+		this.videojuegoRepository = videojuegoRepository;
+	}
+
+
 
 	public List<Videojuego> buscarDestacados(){
-		List<Videojuego> destacados = new ArrayList<>();
-		
-		Videojuego juego = new Videojuego();
-		
-		juego.setDescripcion("Lenguaje funcional");
-		juego.setNombre("Haskell");
-		juego.setImagenUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/1200px-Haskell-Logo.svg.png");
-		
-		destacados.add(juego);
-		
-		juego = new Videojuego();
-		
-		juego.setDescripcion("Lenguaje Lógico");
-		juego.setNombre("Prolog");
-		juego.setImagenUrl("https://programaenlinea.net/wp-content/uploads/2018/08/prolog-1024x585.jpg");
-		
-		destacados.add(juego);
 				
-		return destacados;
+		return videojuegoRepository.buscarTodos();
+	}
+	
+	public List<Videojuego> buscarDistribuidor(int distribuidorId){
+		return videojuegoRepository.buscarPorDistribuidor(distribuidorId);
+	}
+	
+	public List<Videojuego> buscar(String consulta){
+		return videojuegoRepository.buscar(consulta);
 	}
 }

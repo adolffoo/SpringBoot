@@ -19,8 +19,12 @@
 <body>
 	<!-- As a link -->
 	<nav class="navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" th:href="@{/}">
 		    <img src="img/logo.png" width="30" height="30" alt="">Tienda VJ</a>
+		    <form th:action="@{/buscador}" class="form-inline my-2 my-lg-0">
+      <input autofocus="autofocus" name="q" class="form-control mr-sm-2" type="search" th:placeholder="${param.q}" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
 	</nav>
 
 	<div class="container mt-4 vj-destacados">
@@ -29,7 +33,10 @@
 				<div class="card">
 					<img th:src="${juego.imagenUrl}" class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">Oracle</h5>
+						<h5 class="card-title" th:text="${juego.nombre}"></h5>
+						<p>
+						<a th:href="@{/videojuegosPorDistribuidor(distribuidorId=${juego.distribuidor.id})}" class="badge badge-warning" th:text="${juego.distribuidor.nombre}"></a>
+						</p>
 						<p th:text="${juego.descripcion}" class="card-text"></p>	
 					</div>
 					<div class="card-footer text-muted"><a href="#" class="btn btn-primary">Ver detalles</a>
